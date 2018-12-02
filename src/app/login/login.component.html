@@ -1,13 +1,11 @@
-<form [formGroup]="loginForm">
-   <div class="form-group">
-     <label>Email address</label>
-     <input type="email" formControlName="email" class="form-control" required>
-   </div>
-   <div class="form-group">
-     <label>Password</label>
-     <input type="password" class="form-control" formControlName="password" required>
-     <label class="error">{{errorMessage}}</label>
-     <label class="success">{{successMessage}}</label>
-   </div>
-   <button type="submit" (click)="login(loginForm.value)" class="btn btn-default">Register</button>
-</form>
+
+<img class="mb-4" src="https://horrorfreaknews.com/wp-content/uploads/2016/02/the-final-project-movie-download1.jpg" alt="" width="72" height="72">
+<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<label for="inputEmail" class="sr-only">Email address</label>
+<input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+<label for="inputPassword" class="sr-only">Password</label>
+<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+<button class="btn btn-lg btn-primary" (click)='login()'>Sign in</button>
+
+
+<button class="btn btn-lg btn-danger" (click)='loginWithGoogle()'>Sign in with Google</button>
