@@ -10,17 +10,24 @@ import { AdminOrdersComponent   }   from './admin/admin-orders/admin-orders.comp
 import { LoginComponent         }   from './login/login.component';
 import { AdminProductsComponent }   from './admin/admin-products/admin-products.component';
 import { MyOrdersComponent      }   from './my-orders/my-orders.component';
-import { AuthGuard                } from './auth-guard.service';
+import { AuthGuard              }   from './auth.guard';
+import { SingUpComponent        }   from './sing-up/sing-up.component';
+import { ProductFormComponent   }   from './admin/product-form/product-form.component';
+
+
 
 const routes: Routes = [
   {path: ''              ,component: HomeComponent},
   {path: 'products'      ,component: ProductsComponent},
   {path: 'shopping-cart' ,component: ShoppingCartComponent},
-  {path: 'check-out'     ,component: CheckOutComponent, canActivate: [AuthGuard] },
+  {path: 'check-out'     ,component: CheckOutComponent },
   {path: 'login'         ,component: LoginComponent},
-  {path: 'admin/products',component: AdminProductsComponent },
-  {path: 'admin/orders'  ,component: AdminOrdersComponent},
-  {path: 'my/orders'     ,component: MyOrdersComponent}
+  {path: 'admin/products',component: AdminProductsComponent, canActivate: [AuthGuard] },
+  {path: 'admin/orders'  ,component: AdminOrdersComponent,canActivate: [AuthGuard]},
+  {path: 'my/orders'     ,component: MyOrdersComponent, canActivate: [AuthGuard]},
+  {path: 'signup'        ,component: SingUpComponent},
+  {path: 'admin/products/new',component: ProductFormComponent, canActivate: [AuthGuard] },
+  
   
 ];
 
@@ -29,4 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent = [HomeComponent, ProductsComponent, ShoppingCartComponent, CheckOutComponent, LoginComponent, AdminOrdersComponent, AdminProductsComponent, MyOrdersComponent, TrackOrdersComponent, OrderSucComponent]
+export const routingComponent = [HomeComponent, ProductsComponent, ShoppingCartComponent, CheckOutComponent, LoginComponent, AdminOrdersComponent, AdminProductsComponent, MyOrdersComponent, TrackOrdersComponent, OrderSucComponent, SingUpComponent, ProductFormComponent]

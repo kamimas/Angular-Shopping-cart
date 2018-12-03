@@ -7,13 +7,16 @@ import { AngularFireAuthModule    } from '@angular/fire/auth';
 import { RouterModule, Routes     } from '@angular/router';
 import { NgbModule                } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService              } from './auth.service';
-import { AuthGuard                } from './auth-guard.service';
-
+import { CategoryService          } from './category.service';
+import { FormsModule              } from '@angular/forms';
 
 import { AppRoutingModule, routingComponent }   from './app-routing.module';
 import { AppComponent                       }   from './app.component';
 import { BsNavbarComponent                  }   from './bs-navbar/bs-navbar.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthGuard                          }   from './auth.guard';
+import { UserService                        }   from './user.service';
+
+
 
 
 
@@ -22,8 +25,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    routingComponent,
-    SignUpComponent
+    routingComponent
   ],
   imports: [
     BrowserModule,
@@ -31,11 +33,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FormsModule
   ],
   providers: [ 
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService,
+    CategoryService
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]

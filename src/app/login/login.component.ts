@@ -12,10 +12,13 @@ export class LoginComponent {
   
   
   login(){
-    this.auth.login();
+    
+    this.auth.login()
   }
   
   loginWithGoogle(){
+    
     this.auth.loginWithGoogle();
+    
   }
 }
