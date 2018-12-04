@@ -8,7 +8,7 @@ import { RouterModule, Routes     } from '@angular/router';
 import { NgbModule                } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService              } from './auth.service';
 import { CategoryService          } from './category.service';
-import { FormsModule              } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule               } from '@angular/forms';
 
 import { AppRoutingModule, routingComponent }   from './app-routing.module';
 import { AppComponent                       }   from './app.component';
@@ -34,6 +34,7 @@ import { UserService                        }   from './user.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [ 

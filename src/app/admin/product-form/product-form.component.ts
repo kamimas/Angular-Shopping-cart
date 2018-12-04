@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoryService          } from './../../category.service';
+import { Component, OnInit                     } from '@angular/core';
+import { CategoryService                       } from './../../category.service';
 import { AngularFireDatabase, AngularFireList  } from '@angular/fire/database';
-import { Observable        } from 'rxjs/Observable'; 
+import { Observable                            } from 'rxjs/Observable'; 
 
 @Component({
   selector: 'app-product-form',
@@ -17,13 +17,15 @@ export class ProductFormComponent implements OnInit {
   }
   
   submitted: boolean;
+  formControls = this.categoryService.form.controls;
   
   groceryArray = []
   
+ 
+  deleteKey = ""
   
   ngOnInit(){
-    this.categoryService.getGroceries().subscribe(
-      list => {
+    this.categoryService.getGroceries().subscribe( list => {
         this.groceryArray = list.map(item => {
           return{
             $key: item.key,
@@ -33,13 +35,26 @@ export class ProductFormComponent implements OnInit {
       });
   }
   
-  save(product){
-    this.submit = true;
+  save(){
+    this.submitted = true;
     
-    console.log(product)
-    this.categoryService.saveGroceries(product)
+    if(this.categoryService.form.valid){
+      if (this.categoryService.form.get('$key').value==null)
+        this.categoryService.saveGroceries(this.categoryService.form.value)
+      else
+        this.categoryService.updateProduct(this.categoryService.form.value)
+      this.submitted = false;
+    }
   }
 
+  //this.categoryService.deleteRecord(this.categoryService.getDeleteKey())
+  delete(){
+    if(confirm('You are going to delete the following record'))
+      this.categoryService.deleteRecord(this.categoryService.getDeleteKey())
+    else  
+      console.log("he is a bitch")
+      
+  }
 
   
 }

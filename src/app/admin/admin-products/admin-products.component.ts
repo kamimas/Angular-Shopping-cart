@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService   } from './../../category.service'
+import { Observable        } from 'rxjs/Observable'; 
 
 @Component({
   selector: 'app-admin-products',
@@ -6,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-
-  constructor() { }
-
+  
+  productsArray = []
+  constructor(private productService: CategoryService) { 
+    this.productService.getAll().subscribe( list => {
+        this.productsArray = list.map(item => {
+          return{
+            $key: item.key,
+            ...item.payload.val()
+          }
+        })
+      });
+  }
+  
+  
+  get(p){
+    console.log(p.title)
+    this.productService.getProduct(p)
+  }
   ngOnInit() {
   }
 

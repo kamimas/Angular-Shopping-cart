@@ -22,12 +22,12 @@ const routes: Routes = [
   {path: 'shopping-cart' ,component: ShoppingCartComponent},
   {path: 'check-out'     ,component: CheckOutComponent },
   {path: 'login'         ,component: LoginComponent},
-  {path: 'admin/products',component: AdminProductsComponent, canActivate: [AuthGuard] },
   {path: 'admin/orders'  ,component: AdminOrdersComponent,canActivate: [AuthGuard]},
   {path: 'my/orders'     ,component: MyOrdersComponent, canActivate: [AuthGuard]},
   {path: 'signup'        ,component: SingUpComponent},
   {path: 'admin/products/new',component: ProductFormComponent, canActivate: [AuthGuard] },
-  
+  {path: 'admin/products/:id',component: ProductFormComponent, canActivate: [AuthGuard] },
+  {path: 'admin/products'    ,component: AdminProductsComponent, canActivate: [AuthGuard] }
   
 ];
 

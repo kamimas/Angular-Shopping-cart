@@ -1,36 +1,47 @@
-<form #f="ngForm" (ngSubmit)='save(f.value)'>
-    
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input ngModel name="title" type="text" id="title" class="form-control" required/>
-    </div>
-    
-    <div class="form-group">
-                    
-        <label for="price">Price</label>
-        <div class="input-group">
-            <span class="input-group-text">CAD</span>
-
-            <input ngModel name="price" type="number" id="price" class="form-control" required/>
+<div class="row">
+    <div class="col-md-12">
+        <form (ngSubmit)='save()' [formGroup]="this.categoryService.form">
+            <input type="hidden" name="" formControlName="$key" />
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input formControlName="title" type="text" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.title.errors}"/>
+                <div class="invalid-feedback" *ngIf="submitted&& formControls.title.errors">
+                    This field is required
+                </div>
+            </div>
             
-        </div>
+            <div class="form-group">
+                
+                <label for="price">Price</label>
+                <div class="input-group">
+                    <span class="input-group-text">CAD</span>
+        
+                    <input formControlName="price" type="number" class="form-control" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.price.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted&& formControls.price.errors">
+                        <label *ngIf="formControls.price.errors.required">This field is required</label>
+                        <label *ngIf="formControls.price.errors.min">The price should be zero or greater</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category</label>
+        
+                <select formControlName="category" id="category" class="form-control">
+                    <option value=""></option>
+                    <option *ngFor="let gro of groceryArray" >
+                        {{ gro.name }}
+                    </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input formControlName="imageUrl" type="text" id="imageUrl" class="form-control" required/>
+            </div>
+            
+            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-danger" (click)="delete()">Delete</button>
+        </form>
     </div>
-    
-    <div class="form-group">
-        <label for="category">Category</label>
-
-        <select ngModel name="category" id="category" class="form-control">
-            <option value=""></option>
-            <option *ngFor="let gro of groceryArray" >
-                {{ gro.name }}
-            </option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label for="image">Image</label>
-        <input ngModel name="imageUrl" type="text" id="imageUrl" class="form-control" required/>
-    </div>
-    
-    <button class="btn btn-primary">Save</button>
-</form>
+</div>

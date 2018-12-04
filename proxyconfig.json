@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://lastproject-kamimas.c9users.io:8081",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
