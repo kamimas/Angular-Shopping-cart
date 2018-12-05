@@ -11,16 +11,22 @@ export class AdminProductsComponent implements OnInit {
   
   productsArray = []
   constructor(private productService: CategoryService) { 
-    this.productService.getAll().subscribe( list => {
-        this.productsArray = list.map(item => {
-          return{
-            $key: item.key,
-            ...item.payload.val()
-          }
-        })
-      });
+    // this.productService.getAll().subscribe( list => {
+    //     this.productsArray = list.map(item => {
+    //       return{
+    //         $key: item.key,
+    //         ...item.payload.val()
+    //       }
+    //     })
+    //   });
+      
+    this.productService.getGroceries(this.onResponse.bind(this))
   }
   
+  
+  onResponse(res){
+    this.productsArray = res
+  }
   
   get(p){
     console.log(p.title)

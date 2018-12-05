@@ -25,16 +25,14 @@ export class ProductFormComponent implements OnInit {
   deleteKey = ""
   
   ngOnInit(){
-    this.categoryService.getGroceries().subscribe( list => {
-        this.groceryArray = list.map(item => {
-          return{
-            $key: item.key,
-            ...item.payload.val()
-          }
-        })
-      });
+    this.categoryService.getGroceries(this.onResponse.bind(this))
+    
+    
   }
   
+  onResponse(res){
+    this.groceryArray = res
+  }
   save(){
     this.submitted = true;
     

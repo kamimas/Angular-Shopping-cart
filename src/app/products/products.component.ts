@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './../product.service'
+import {ActivatedRoute} from "@angular/router"
+
+  
+  
 
 @Component({
   selector: 'app-products',
@@ -6,10 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
-  constructor() { }
-
+  
+  category: string;
+  groc = []
+  
+  constructor(private productService: ProductService,private route: ActivatedRoute) { }
+  
   ngOnInit() {
+    this.productService.getProduct(this.onResponse.bind(this))
+    
+    this.route.queryParamMap.subscribe(params => {
+      this.category = params.get('category')
+      console.log(this.category)
+      this.productService.setCat(this.category)
+      this.productService.getCategory(this.onResponse.bind(this))
+    })
   }
+  
+  
+  
+  categories = ["All","Fruit", "Vegetable", 'Bread']
+  groceryArray = []
+  
+  
+  onResponse(res){
+    //console.log(res)
+    this.groceryArray = res
+  }
+  
+  
 
 }
