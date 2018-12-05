@@ -20,8 +20,7 @@ import { BsNavbarComponent                  }   from './bs-navbar/bs-navbar.comp
 import { AuthGuard                          }   from './auth.guard';
 import { UserService                        }   from './user.service';
 import { ProductService } from './product.service';
-import { ProductCardComponent } from './product-card/product-card.component'
-
+import { ShoppingCartService } from './shopping-cart.service'
 
 
 
@@ -30,8 +29,7 @@ import { ProductCardComponent } from './product-card/product-card.component'
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    routingComponent,
-    ProductCardComponent
+    routingComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +48,8 @@ import { ProductCardComponent } from './product-card/product-card.component'
     AuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent],
   exports:[RouterModule]
