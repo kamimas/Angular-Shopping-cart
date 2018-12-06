@@ -84,8 +84,10 @@ export class ShoppingCartService {
     // }
     // this.http.put("https://lastproject-kamimas.c9users.io:8081/api/shopping-cart/"+id,title,httpOptions).subscribe(data=>console.log("aight"))
     var key = null
+    console.log(JSON.parse(localStorage.getItem('cart1')))
     
-    console.log()
+    
+    
     if(this.ShoppingList.length == 0){
       this.ShoppingList.push({
         title: product.title,
@@ -94,8 +96,6 @@ export class ShoppingCartService {
     }else{
       for(var i=0;i<this.ShoppingList.length;i++){
         
-        //console.log(this.ShoppingList[i].title)
-        console.log(this.ShoppingList)
         if(this.ShoppingList[i].title == product.title)
           {
             key = i
@@ -116,9 +116,18 @@ export class ShoppingCartService {
         this.ShoppingList[key].quantity = parseInt(this.ShoppingList[key].quantity) + 1
         
       }
+      
+      let shoppingCart = localStorage.getItem('cart1')
+      
+      if(!shoppingCart){
+         localStorage.setItem('cart1',JSON.stringify(this.ShoppingList))
+      }
+      else{
+        localStorage.setItem('cart1',JSON.stringify(this.ShoppingList))
+      }
     }
     
-
+  
   }
   
   
