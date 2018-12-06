@@ -29,7 +29,7 @@ export class AdminProductsComponent implements OnInit {
   }
   
   get(p){
-    console.log(p.title)
+    console.log(p)
     this.productService.getProduct(p)
   }
   ngOnInit() {

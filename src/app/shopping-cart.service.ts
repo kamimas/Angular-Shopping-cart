@@ -10,7 +10,7 @@ export class ShoppingCartService {
   
   w = ''
   cart = []
-  
+  ShoppingList = []
   private create(){
     
     const httpOptions = {
@@ -72,13 +72,63 @@ export class ShoppingCartService {
     }
   }
   
+  postToCart(product,id){
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   })
+    // };
+    
+    // title ={
+    //   name: title
+    // }
+    // this.http.put("https://lastproject-kamimas.c9users.io:8081/api/shopping-cart/"+id,title,httpOptions).subscribe(data=>console.log("aight"))
+    var key = null
+    
+    console.log()
+    if(this.ShoppingList.length == 0){
+      this.ShoppingList.push({
+        title: product.title,
+        quantity: 1
+      })
+    }else{
+      for(var i=0;i<this.ShoppingList.length;i++){
+        
+        //console.log(this.ShoppingList[i].title)
+        console.log(this.ShoppingList)
+        if(this.ShoppingList[i].title == product.title)
+          {
+            key = i
+            i = this.ShoppingList.length
+          }
+        else 
+          key = '-1'
+      }
+      
+      if(key == '-1'){
+        this.ShoppingList.push({
+          title: product.title,
+          quantity: 1
+        })
+      }
+      else{
+        
+        this.ShoppingList[key].quantity = parseInt(this.ShoppingList[key].quantity) + 1
+        
+      }
+    }
+    
+
+  }
+  
   
   addToCart(product){
     let carte = this.getOrCreateCart();
-    console.log(carte)
 
-    this.getCart(carte)
+    //this.getCart(carte)
     
-    console.log(this.cart)
+    this.postToCart(product,carte)
+    
+    
   }
 }
