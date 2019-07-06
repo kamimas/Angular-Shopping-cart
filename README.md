@@ -1,4 +1,7 @@
-# LastProject
+# Angular Shopping Cart
+
+
+This shopping cart was created using Angular framework for the front end, node js and express for the middleware and firebase for the database.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
